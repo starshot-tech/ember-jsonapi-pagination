@@ -10,11 +10,12 @@ export default class PaginationComponent extends Component {
   @tracked pages = {};
 
   didReceiveAttrs() {
-    // let entries = Object.entries(this.model);
-    // console.log(entries);
-    let pagesArray = Object.keys(this.model).map(i => this.model[i]);
+
+
+
+    let pagesArray = Object.entries(this.model).map((e) => ( { [e[0]]: e[1] } ));
     console.log(pagesArray);
-    // debugger;
+    debugger;
     this.pages = pagesArray;
   }
 

@@ -2,7 +2,7 @@
 
 <Pagination @model={{@model.meta.pagination}} as |pages|>
   {{#each pages as |page|}}
-    {{page.number}}
+    {{page.self.number}}
   {{/each}}
 </Pagination>
 

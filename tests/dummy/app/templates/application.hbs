@@ -1,3 +1,9 @@
 <h2 id="title">Welcome to Ember</h2>
 
+<Pagination @model={{@model.meta.pagination}} as |pages|>
+  {{#each pages as |page|}}
+    {{page.number}}
+  {{/each}}
+</Pagination>
+
 {{outlet}}

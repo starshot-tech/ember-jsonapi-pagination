@@ -14,7 +14,7 @@ module('Unit | Serializer | jsonapi pagination', function(hooks) {
 
   test('it serializes records', function(assert) {
     let store = this.owner.lookup('service:store');
-    let record = store.createRecord('jsonapi-pagination', {});
+    let record = store.createRecord('post', {});
 
     let serializedRecord = record.serialize();
 

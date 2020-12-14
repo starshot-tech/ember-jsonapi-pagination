@@ -8,43 +8,88 @@ import { tracked } from '@glimmer/tracking';
   */
 export default class PaginationComponent extends Component {
   @tracked pages = {};
+  @tracked padBy = 0;
+  @tracked minimalMode = false;
 
   didReceiveAttrs() {
+    let prevLinks = this.buildPrevLinks(this.model);
+    let nextLinks = this.buildNextLinks(this.model);
 
+    let pagesArray = [
+      this.selfCheck(this.model.first.number, 'first'),
+      ...prevLinks,
+      { key: 'prev', number: this.model.prev.number },
+      { key: 'self', number: this.model.self.number },
+      { key: 'next', number: this.model.next.number },
+      ...nextLinks,
+      this.selfCheck(this.model.last.number, 'last')
+    ].filter(Boolean);
 
+    if (this.minimalMode) {
+      pagesArray = pagesArray.filter(page => {
+        return ['prev', 'self', 'next'].includes(page.key);
+      });
+    }
 
-    let pagesArray = Object.entries(this.model).map((e) => ( { [e[0]]: e[1] } ));
-    console.log(pagesArray);
-    debugger;
     this.pages = pagesArray;
   }
 
-// don't show previous if doesn't exist
-// don't show next if doesn't exist
-// make pageObject a pagesArray of objects
+  selfCheck(number, key) {
+    let prevSelfNext = [
+      this.model.prev.number,
+      this.model.self.number,
+      this.model.next.number
+    ]
 
+    if (prevSelfNext.includes(number)) {
+      return null;
+    }
+    return { key, number };
+  }
 
-  // @tracked pagination = this.pagination;
+  getPageNumber(k) {
+    if (!this.model[k]) {
+      return null;
+    }
 
-  // get showFirstLink() {
-  //   return this.pagination.self.number !== this.pagination.first.number;
-  // }
+    return this.model[k].number;
+  }
 
-  // get showLastLink() {
-  //   return this.pagination.self.number !== this.pagination.last.number;
-  // }
+  get padByInt() {
+    return parseInt(this.padBy) || 0;
+  }
 
-  // get oneMore() {
-  //   return this.pagination.self.number < this.pagination.last.number;
-  // }
+  buildPrevLinks(obj) {
+    let page = obj.self.number - 2;
+    let first = page - this.padByInt < obj.first.number
+      ? obj.first.number
+      : page - this.padByInt;
 
-  // get twoMore() {
-  //   let tail = this.pagination.last.number - 1;
-  //   return this.pagination.self.number < tail;
-  // }
+    let pages = [];
 
-  // get twoLess() {
-  //   let tail = this.pagination.first.number + 2;
-  //   return this.pagination.self.number > tail;
-  // }
+    while (page > first) {
+      pages.push( { key: 'pad-prev', number: page } );
+
+      page--
+    }
+
+    return pages.reverse();
+  }
+
+  buildNextLinks(obj) {
+    let page = obj.self.number + 2;
+    let last = page + this.padByInt > obj.last.number
+      ? obj.last.number
+      : page + this.padByInt;
+
+    let pages = [];
+
+    while (page < last) {
+      pages.push( { key: 'pad-next', number: page } );
+
+      page++
+    }
+
+    return pages;
+  }
 }

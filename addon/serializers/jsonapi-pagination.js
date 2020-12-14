@@ -1,4 +1,5 @@
 import JSONAPISerializer from '@ember-data/serializer/json-api';
+import queryString from 'query-string';
 
 export default class JsonapiPaginationSerializer extends JSONAPISerializer {
   normalizeQueryResponse(store, clazz, payload) {
@@ -19,19 +20,17 @@ export default class JsonapiPaginationSerializer extends JSONAPISerializer {
     Object.keys(data).forEach((type) => {
       let link = data[type];
       meta[type] = {};
-      let a = document.createElement('a');
-      a.href = link;
 
-      a.search.slice(1).split('&').forEach((pairs) => {
+      if (!link) {
+        meta[type].number = null;
+      } else {
+        let newLinks = link.split('?');
+        let queryParams = queryString.parse(newLinks[1]);
 
-        let [param, value] = pairs.split('=');
-
-        if (param === 'page') {
-          meta[type].number = parseInt(value);
+        if (queryParams.page) {
+          meta[type].number = parseInt(queryParams.page) || null;
         }
-
-      });
-      a = null;
+      }
     });
 
     return meta;

@@ -1,1 +1,17 @@
-{{yield this.pages}}
+{{#if hasBlock}}
+  {{yield this.pages}}
+{{else}}
+  <ul>
+    {{#each this.pages as |page|}}
+      {{#if page.number}}
+        <li>
+          <button
+            type="button"
+            {{on 'click' (fn this.goToPage page.number)}}>
+              {{page.number}}
+          </button>
+        </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+{{/if}}

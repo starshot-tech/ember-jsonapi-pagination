@@ -2,9 +2,8 @@ import Component from '@ember/component';
 import { tracked } from '@glimmer/tracking';
 
 /**
-  * @module
-  * @name Pagination Component
-  * @description This is used to render pagination links.
+  * This is used to render pagination links.
+  * @public
   */
 export default class PaginationComponent extends Component {
   @tracked pages = {};
@@ -26,7 +25,7 @@ export default class PaginationComponent extends Component {
     ].filter(Boolean);
 
     if (this.minimalMode) {
-      pagesArray = pagesArray.filter(page => {
+      pagesArray = pagesArray.filter((page) => {
         return ['prev', 'self', 'next'].includes(page.key);
       });
     }
@@ -39,11 +38,12 @@ export default class PaginationComponent extends Component {
       this.model.prev.number,
       this.model.self.number,
       this.model.next.number
-    ]
+    ];
 
     if (prevSelfNext.includes(number)) {
       return null;
     }
+
     return { key, number };
   }
 
@@ -68,9 +68,9 @@ export default class PaginationComponent extends Component {
     let pages = [];
 
     while (page > first) {
-      pages.push( { key: 'pad-prev', number: page } );
+      pages.push({ key: 'pad-prev', number: page });
 
-      page--
+      page--;
     }
 
     return pages.reverse();
@@ -85,9 +85,9 @@ export default class PaginationComponent extends Component {
     let pages = [];
 
     while (page < last) {
-      pages.push( { key: 'pad-next', number: page } );
+      pages.push({ key: 'pad-next', number: page });
 
-      page++
+      page++;
     }
 
     return pages;

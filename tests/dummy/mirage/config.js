@@ -21,8 +21,8 @@ function postArray(pages) {
         'id': '182512',
 
         'attributes': {
-          'title': "My Title",
-          'body': "My Body"
+          'title': 'My Title',
+          'body': 'My Body'
         }
       },
       {
@@ -34,13 +34,13 @@ function postArray(pages) {
 
         'id': '166458',
         'attributes': {
-          'title': "My Title",
-          'body': "My Body"
+          'title': 'My Title',
+          'body': 'My Body'
         }
       }
     ]
-  }
-};
+  };
+}
 
 export default function() {
   this.get('/posts', (schema, request) => {

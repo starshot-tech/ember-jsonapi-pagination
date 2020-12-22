@@ -11,16 +11,21 @@ module.exports = {
     }
   },
   plugins: [
-    'ember'
+    'ember',
+    'ember-suave'
   ],
   extends: [
     'eslint:recommended',
-    'plugin:ember/recommended'
+    'plugin:ember/recommended',
+    'plugin:ember-suave/recommended'
   ],
   env: {
     browser: true
   },
-  rules: {},
+  rules: {
+    'ember-suave/lines-between-object-properties': 'off',
+    'lines-between-class-members': ['error', 'always', { 'exceptAfterSingleLine': true }]
+  },
   overrides: [
     // node files
     {

@@ -12,14 +12,14 @@
   @model={{@model.meta.pagination}}
   @goToPage={{this.goToPage}}
   @padBy={{this.padBy}}
-  @minimalMode={{this.minimalMode}}/>
+  @minimalMode={{this.minimalMode}} />
 
 <Pagination
   @padBy={{this.padBy}}
   @minimalMode={{this.minimalMode}}
   @model={{@model.meta.pagination}} as |pages|>
     {{#each pages as |page|}}
-      <a href
+      <a href="#"
         data-test-id={{page.number}}
         {{on 'click' (fn this.goToPage page.number)}}>
           {{page.number}}

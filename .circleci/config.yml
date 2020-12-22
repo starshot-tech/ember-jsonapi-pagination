@@ -1,0 +1,52 @@
+version: 2.1
+orbs:
+  ember:
+    executors:
+      default:
+        docker:
+          - image: circleci/node:12.18.2-browsers
+    commands:
+      check:
+        steps:
+          - checkout
+      reports:
+        steps:
+          - run: mkdir -p ./reports
+      load_depenecies:
+        steps:
+          - restore_cache:
+             keys:
+              - ember-jsonapi-pagination-node12-v1-{{ checksum "yarn.lock" }}
+          - run: yarn install
+          - save_cache:
+              key: ember-jsonapi-pagination-node12-v1-{{ checksum "yarn.lock" }}
+              paths:
+                - ~/ember-jsonapi-pagination/node_modules
+      persist:
+        steps:
+          - persist_to_workspace:
+              root: .
+              paths:
+                - .
+      attach:
+        steps:
+          - attach_workspace:
+              at: .
+      test:
+        steps:
+          - run: yarn test
+    jobs:
+      build_and_test:
+        executor: default
+        steps:
+          - check
+          - reports
+          - load_depenecies
+          - persist
+          - attach
+          - test
+
+workflows:
+  test_ember:
+    jobs:
+      - ember/build_and_test

@@ -9,7 +9,7 @@ export default class ApplicationRoute extends Route {
   };
 
   model(params) {
-    let page = params.page || 1;
+    let { page } = params;
     return this.store.query('post', { page });
   }
 }

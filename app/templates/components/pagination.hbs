@@ -5,9 +5,8 @@
     {{#each this.pages as |page|}}
       {{#if page.number}}
         <li>
-          <button
-            type="button"
-            {{on 'click' (fn this.goToPage page.number)}}>
+          <button type="button"
+            {{on 'click' (fn this.updatePage page.number)}}>
               {{page.number}}
           </button>
         </li>

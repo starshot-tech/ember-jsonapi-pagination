@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 /**
@@ -91,5 +92,11 @@ export default class PaginationComponent extends Component {
     }
 
     return pages;
+  }
+
+  @action
+  updatePage(e, pageNumber) {
+    e.preventDefault();
+    this.goToPage(pageNumber);
   }
 }

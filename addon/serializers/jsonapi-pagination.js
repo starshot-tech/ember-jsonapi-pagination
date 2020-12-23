@@ -3,7 +3,14 @@ import queryString from 'query-string';
 
 export default class JsonapiPaginationSerializer extends JSONAPISerializer {
   normalizeQueryResponse(store, clazz, payload) {
-    let result = super.normalizeQueryResponse(...arguments);
+    return this.appendPagination(super.normalizeQueryResponse(...arguments), payload);
+  }
+
+  normalizeArrayResponse(store, clazz, payload) {
+    return this.appendPagination(super.normalizeArrayResponse(...arguments), payload);
+  }
+
+  appendPagination(result, payload) {
     result.meta = result.meta || {};
 
     if (payload.links) {

@@ -7,14 +7,14 @@
     Minimal Mode
 </button>
 
-<Pagination
+<JsonapiPagination
   class="hello"
   @model={{@model.meta.pagination}}
   @goToPage={{this.goToPage}}
   @padBy={{this.padBy}}
   @minimalMode={{this.minimalMode}} />
 
-<Pagination
+<JsonapiPagination
   @padBy={{this.padBy}}
   @minimalMode={{this.minimalMode}}
   @model={{@model.meta.pagination}} as |pages|>
@@ -25,6 +25,6 @@
           {{page.number}}
       </a>
     {{/each}}
-</Pagination>
+</JsonapiPagination>
 
 {{outlet}}

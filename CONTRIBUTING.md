@@ -2,15 +2,15 @@
 
 ## Installation
 
-* `git clone <repository-url>`
+* `git clone https://github.com/starshot-tech/ember-jsonapi-pagination.git`
 * `cd ember-jsonapi-pagination`
-* `npm install`
+* `yarn`
 
 ## Linting
 
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `yarn lint:hbs`
+* `yarn lint:js`
+* `yarn lint:js -- --fix`
 
 ## Running tests
 

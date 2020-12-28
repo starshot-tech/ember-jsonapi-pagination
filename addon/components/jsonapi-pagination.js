@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
   * This is used to render pagination links.
   * @public
   */
-export default class PaginationComponent extends Component {
+export default class JsonapiPaginationComponent extends Component {
   @tracked pages = {};
   @tracked padBy = 0;
   @tracked minimalMode = false;

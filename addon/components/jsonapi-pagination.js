@@ -96,7 +96,6 @@ export default class JsonapiPaginationComponent extends Component {
 
   @action
   updatePage(e, pageNumber) {
-    e.preventDefault();
-    this.goToPage(pageNumber);
+    this.goToPage(e, pageNumber);
   }
 }

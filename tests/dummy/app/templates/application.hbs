@@ -19,7 +19,7 @@
   @minimalMode={{this.minimalMode}}
   @model={{@model.meta.pagination}} as |pages|>
     {{#each pages as |page|}}
-      <a href="#"
+      <a href="javascript:;"
         data-test-id={{page.number}}
         {{on 'click' (fn this.goToPage page.number)}}>
           {{page.number}}

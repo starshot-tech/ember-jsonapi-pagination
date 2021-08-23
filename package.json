@@ -1,6 +1,6 @@
 {
   "name": "ember-jsonapi-pagination",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A JSON API spec pagination addon for ember.",
   "keywords": [
     "ember-addon",
@@ -63,7 +63,7 @@
     "qunit-dom": "^1.4.0"
   },
   "engines": {
-    "node": "10.* || >= 12.*"
+    "node": "10.* || >= 14.*"
   },
   "ember": {
     "edition": "octane"

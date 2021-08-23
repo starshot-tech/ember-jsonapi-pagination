@@ -1,6 +1,6 @@
 {
   "name": "ember-jsonapi-pagination",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A JSON API spec pagination addon for ember.",
   "keywords": [
     "ember-addon",
